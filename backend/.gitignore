@@ -1,0 +1,5 @@
+/.DS_Store
+/.venv/
+/*.glb
+/__pycache__/
+upload/*.png
