@@ -1,5 +1,5 @@
 /.DS_Store
 /.venv/
-/*.glb
+response.glb
 /__pycache__/
 upload/*.png
