@@ -1,0 +1,40 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+
+services:
+  - docker:dind
+
+before_script:
+  - docker info
+  - docker-compose --version
+
+build_backend:
+  stage: build
+  script:
+    - docker-compose build backend
+  tags:
+    - docker
+
+build_frontend:
+  stage: build
+  script:
+    - docker-compose build frontend
+  tags:
+    - docker
+
+test_backend:
+  stage: test
+  script:
+    - docker-compose up -d backend
+    - docker-compose exec backend pytest
+  after_script:
+    - docker-compose down
+  tags:
+    - docker
