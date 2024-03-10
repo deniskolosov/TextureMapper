@@ -6,13 +6,22 @@ This is a simple web application that allows users to render `.glb` (GLB) 3D mod
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/your-project-name.git
-cd your-project-name
+git clone https://gitlab.com/deniskolosov/glb_render_example.git
+cd glb_render_example
 ```
 
-2. Build and run the containers using Docker Compose:
+2. Build and run the containers using Docker Compose (make sure 8000 and 8080 ports are free):
 ```bash
 docker-compose up -d
+```
+
+3. Run tests for backend
+```bash
+docker-compose exec backend pytest
+```
+4. Check logs for the apps
+```bash
+docker-compose logs
 ```
 
 ## Usage
@@ -25,7 +34,7 @@ Once the application is running, you can access:
 To use the application, follow these steps:
 
 1. Navigate to the frontend URL in your web browser.
-2. Apply a custom texture by uploading an image file.
+2. Apply a custom texture by uploading an .png file.
 
 ## Development
 
