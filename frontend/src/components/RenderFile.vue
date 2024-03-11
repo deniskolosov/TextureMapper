@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div id="threejs-container"></div>
     <input type="file" @change="onFileSelected" />
     <button @click="uploadFile" :disabled="!selectedFile">Upload</button>
+    <div id="threejs-container"></div>
   </div>
 </template>
 
@@ -39,7 +39,9 @@ export default {
       light.position.set(10, 10, 10);
       scene.add(light);
       renderer.setSize(window.innerWidth , window.innerHeight );
-      this.$el.appendChild(renderer.domElement);
+      const container = this.$el.querySelector('#threejs-container');
+      container.innerHTML = '';
+      container.appendChild(renderer.domElement);
 
       const loader = new GLTFLoader();
 
