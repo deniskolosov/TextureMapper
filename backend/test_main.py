@@ -24,10 +24,20 @@ def test_render_missing_file():
     assert response.status_code == 422
 
 
-def test_render_success():
+def test_render_success_png():
     with open("test.png", "rb") as image:
         response = client.post(
             "/render", files={"texture": ("test.png", image, "image/png")}
+        )
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "model/gltf-binary"
+    assert response.content is not None
+
+
+def test_render_success_jpeg():
+    with open("test.jpg", "rb") as image:
+        response = client.post(
+            "/render", files={"texture": ("test.jpg", image, "image/jpeg")}
         )
     assert response.status_code == 200
     assert response.headers["content-type"] == "model/gltf-binary"

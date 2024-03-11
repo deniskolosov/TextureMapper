@@ -46,7 +46,7 @@ async def ping():
 
 @app.post("/render")
 async def render(texture: UploadFile = File(...)):
-    if texture.content_type not in ["image/jpg", "image/png"]:
+    if texture.content_type not in ["image/jpeg", "image/png"]:
         return Response(content="Unsupported file type", status_code=400)
     destination = Path("upload") / texture.filename
     with destination.open("wb") as buffer:
